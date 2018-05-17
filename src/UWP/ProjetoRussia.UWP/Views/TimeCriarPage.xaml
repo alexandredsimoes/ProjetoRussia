@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="ProjetoRussia.UWP.Views.TimeCriarPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+    Style="{StaticResource PageStyle}"
+    xmlns:prismMvvm="using:Prism.Windows.Mvvm"
+    prismMvvm:ViewModelLocator.AutoWireViewModel="True" 
+    mc:Ignorable="d">
+    <Grid
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+                Place your content here.-->
+
+            <StackPanel>
+                <TextBox Header="Nome do time" Text="{x:Bind ViewModel.Time.Pais, Mode=TwoWay}" />
+                <TextBox Header="Nome do técnico" Text="{x:Bind ViewModel.Time.NMTecnico, Mode=TwoWay}" />
+                <Image Margin="0,15,0,0" Width="200" Source="{x:Bind ViewModel.Time.Bandeira, Converter={StaticResource BinaryToImageConverter}, TargetNullValue='ms-appx:///Assets/placeholder-800x423.gif'}">
+                    <!--<Image.Source>
+                        <BitmapImage>
+                            <BitmapImage.DecodePixelWidth>
+                                200
+                            </BitmapImage.DecodePixelWidth>
+                            <BitmapImage.UriSource>
+                                ms-appx:///Assets/placeholder-800x423.gif
+                            </BitmapImage.UriSource>
+                        </BitmapImage>
+                    </Image.Source>-->
+                    <i:Interaction.Behaviors>
+                        <ic:EventTriggerBehavior EventName="Tapped">
+                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.SelecionarImagemCommand}" />
+                        </ic:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </Image>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Header="Nome do jogador" Text="{x:Bind ViewModel.NomeJogador, Mode=TwoWay}"  HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Header="Número da camisa" Text="{x:Bind ViewModel.NumeroCamisa, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="2" Header="Posição" Text="{x:Bind ViewModel.PosicaoJogador, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Center" />
+                </Grid>
+                <Button Content="Adicionar jogador" Command="{x:Bind ViewModel.AdicionarJogadorCommand}" />
+                <ListView ItemsSource="{x:Bind ViewModel.Time.Jogadores, Mode=TwoWay}">
+                    
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </Grid>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Save" Label="Salvar" Command="{x:Bind ViewModel.SalvarCommand}" />
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
