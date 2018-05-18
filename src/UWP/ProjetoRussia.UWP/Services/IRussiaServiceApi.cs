@@ -11,5 +11,8 @@ namespace ProjetoRussia.UWP.Services
     {
         Task<IEnumerable<TimeDto>> ListarTimes();
         Task<bool> CriarTime(TimeDto time);
+
+        Task<IEnumerable<JogoDto>> ListarJogos();
+        Task<bool> CriarJogo(JogoDto jogo);
     }
 }

@@ -128,7 +128,7 @@
     <Compile Include="Models\FichaDto.cs" />
     <Compile Include="Models\GolDto.cs" />
     <Compile Include="Models\JogadorDto.cs" />
-    <Compile Include="Models\Jogo.cs" />
+    <Compile Include="Models\JogoDto.cs" />
     <Compile Include="Models\SampleOrder.cs" />
     <Compile Include="Models\TimeDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

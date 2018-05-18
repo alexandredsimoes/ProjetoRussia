@@ -49,5 +49,27 @@ namespace ProjetoRussia.UWP.Services
 
             return result.IsSuccessStatusCode;            
         }
+
+        public async Task<IEnumerable<JogoDto>> ListarJogos()
+        {
+            var content = await _httpClient.GetAsync(Api.BASE_URL + Api.JOGOS_URL);
+            var result = await content.Content.ReadAsStringAsync();
+
+            if (content.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                //Manda o FDP pro login
+            }
+            var lista = JsonConvert.DeserializeObject<IEnumerable<JogoDto>>(result);
+            return lista;
+        }
+
+        public async Task<bool> CriarJogo(JogoDto jogo)
+        {
+            var httpContent = new StringContent(JsonConvert.SerializeObject(jogo),
+                Encoding.UTF8, "application/json");
+            var result = await _httpClient.PostAsync(Api.BASE_URL + Api.JOGOS_URL, httpContent);
+
+            return result.IsSuccessStatusCode;
+        }
     }
 }

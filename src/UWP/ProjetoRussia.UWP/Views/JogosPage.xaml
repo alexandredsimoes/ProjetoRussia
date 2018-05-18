@@ -17,16 +17,20 @@
         </TransitionCollection>
     </Page.Transitions>
     <Page.Resources>
-        <DataTemplate x:Key="ItemTemplate" x:DataType="model:SampleOrder">
+        <DataTemplate x:Key="ItemTemplate" x:DataType="model:JogoDto">
             <Grid Height="64" Padding="0,8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <FontIcon Grid.Column="0" FontSize="40" Glyph="{x:Bind Symbol}" VerticalAlignment="Center" />
+                <!--<FontIcon Grid.Column="0" FontSize="40" Glyph="{x:Bind Symbol}" VerticalAlignment="Center" />-->
                 <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
-                    <TextBlock Text="{x:Bind Company}" Style="{ThemeResource ListTitleStyle}"/>
-                    <TextBlock Text="{x:Bind Status}" Style="{StaticResource ListSubTitleStyle}"/>
+                    <TextBlock Style="{ThemeResource ListTitleStyle}">
+                        <Run Text="{x:Bind Time_1.Pais}" ></Run>
+                        <Run Text="  X  " ></Run>
+                        <Run Text="{x:Bind Time_2.Pais}" ></Run>
+                    </TextBlock>
+                    <TextBlock Text="{x:Bind Data}" Style="{StaticResource ListSubTitleStyle}"/>
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -43,7 +47,7 @@
     <Grid x:Name="ContentArea">
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
-            ItemsSource="{x:Bind ViewModel.SampleItems}"
+            ItemsSource="{x:Bind ViewModel.Jogos}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
             ItemTemplate="{StaticResource ItemTemplate}"
             DetailsTemplate="{StaticResource DetailsTemplate}"

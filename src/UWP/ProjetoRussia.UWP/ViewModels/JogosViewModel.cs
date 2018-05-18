@@ -20,23 +20,24 @@ namespace ProjetoRussia.UWP.ViewModels
     public class JogosViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private readonly ISampleDataService _sampleDataService;
+        private readonly IRussiaServiceApi _russiaServiceApi;
 
-        public JogosViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
+        public JogosViewModel(INavigationService navigationServiceInstance,
+           IRussiaServiceApi russiaServiceApi)
         {
+            _russiaServiceApi = russiaServiceApi;
             _navigationService = navigationServiceInstance;
-            _sampleDataService = sampleDataServiceInstance;
         }
 
-        private SampleOrder _selected;
+        private JogoDto _selected;
 
-        public SampleOrder Selected
+        public JogoDto Selected
         {
             get => _selected;
             set => SetProperty(ref _selected, value);
         }
 
-        public ObservableCollection<SampleOrder> SampleItems { get; } = new ObservableCollection<SampleOrder>();
+        public ObservableCollection<JogoDto> Jogos { get; } = new ObservableCollection<JogoDto>();
 
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
@@ -46,16 +47,28 @@ namespace ProjetoRussia.UWP.ViewModels
 
         public async Task LoadDataAsync()
         {
-            SampleItems.Clear();
-
-            var data = await _sampleDataService.GetSampleModelDataAsync();
+            var data = await _russiaServiceApi.ListarJogos();
+            Jogos.Clear();
 
             foreach (var item in data)
             {
-                SampleItems.Add(item);
+                Jogos.Add(item);
             }
 
-            Selected = SampleItems.First();
+            Selected = Jogos.First();
+        }
+        public string Teste()
+        {
+            return "";
+        }       
+
+        private DelegateCommand _criarJogoCommand;
+        public DelegateCommand CriarJogoCommand =>
+            _criarJogoCommand ?? (_criarJogoCommand = new DelegateCommand(ExecuteCriarJogoCommand));
+
+        void ExecuteCriarJogoCommand()
+        {
+            // _navigationService.Navigate(PageTokens.JogosCriarPage, null);
         }
     }
 }
