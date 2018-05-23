@@ -27,7 +27,6 @@
             <NavigationViewItem x:Uid="Shell_Principal" Icon="Document" helpers:NavHelper.NavigateTo="Principal" />
             <NavigationViewItem x:Uid="Shell_Times" Icon="Document" helpers:NavHelper.NavigateTo="Times" />
             <NavigationViewItem x:Uid="Shell_Jogos" Icon="Document" helpers:NavHelper.NavigateTo="Jogos" />
-            <NavigationViewItem x:Uid="Shell_TimeCriar" Icon="Document" helpers:NavHelper.NavigateTo="TimeCriar" />
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
             <DataTemplate>

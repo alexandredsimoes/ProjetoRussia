@@ -55,7 +55,7 @@ namespace ProjetoRussia.UWP.ViewModels
                 Jogos.Add(item);
             }
 
-            Selected = Jogos.First();
+            Selected = Jogos.FirstOrDefault();
         }
         public string Teste()
         {

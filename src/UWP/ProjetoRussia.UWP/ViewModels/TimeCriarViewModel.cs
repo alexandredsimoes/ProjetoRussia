@@ -9,6 +9,7 @@ using ProjetoRussia.UWP.Services;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -64,7 +65,7 @@ namespace ProjetoRussia.UWP.ViewModels
             }
             else
             {
-               // return null;
+                // return null;
             }
         }
 
@@ -120,6 +121,27 @@ namespace ProjetoRussia.UWP.ViewModels
 
         void ExecuteAdicionarJogadorCommand()
         {
+            Action<string> mensagem = async (s) =>
+            {
+                MessageDialog dlg = new MessageDialog(s);
+                await dlg.ShowAsync();
+            };
+            if (String.IsNullOrWhiteSpace(NomeJogador))
+            {
+                mensagem("Informe o nome do jogador.");
+                return;
+            }
+
+            if (String.IsNullOrWhiteSpace(PosicaoJogador))
+            {
+                mensagem("Informe a posição do jogador.");
+                return;
+            }
+            if (NumeroCamisa <=0)
+            {
+                mensagem("Informe o número da camisa.");
+                return;
+            }
             Time?.Jogadores.Add(new JogadorDto()
             {
                 Nome = NomeJogador,
@@ -131,6 +153,10 @@ namespace ProjetoRussia.UWP.ViewModels
                     Camisa = NumeroCamisa
                 }
             });
+
+            NomeJogador = string.Empty;
+            PosicaoJogador = string.Empty;
+            NumeroCamisa = 0;
 
             RaisePropertyChanged("Time");
             RaisePropertyChanged("Time.Jogadores");

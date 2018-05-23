@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:model="using:ProjetoRussia.UWP.Models"
     Style="{StaticResource PageStyle}"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True" 
@@ -51,7 +52,58 @@
                 </Grid>
                 <Button Content="Adicionar jogador" Command="{x:Bind ViewModel.AdicionarJogadorCommand}" />
                 <ListView ItemsSource="{x:Bind ViewModel.Time.Jogadores, Mode=TwoWay}">
-                    
+                    <ListView.Header>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"  />
+                                <ColumnDefinition Width="*"  />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="Nome" Style="{StaticResource SubheaderTextBlockStyle}"/>
+                            <TextBlock Grid.Column="1" Text="Posição" Style="{StaticResource SubheaderTextBlockStyle}"/>
+                            <TextBlock Grid.Column="2" Text="Nr. camisa" Style="{StaticResource SubheaderTextBlockStyle}"/>
+                            <!--<TextBlock Grid.Row="1" Text="{x:Bind Nome, Mode=OneWay}"/>
+                                <TextBlock Grid.Row="1" Text="{x:Bind Ficha.Posicao, Mode=OneWay}" Grid.Column="1"/>
+                                <TextBlock Grid.Row="1" Text="{x:Bind Ficha.Camisa, Mode=OneWay}" Grid.Column="2"/>-->
+                        </Grid>
+                    </ListView.Header>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:JogadorDto">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*"  />
+                                    <ColumnDefinition Width="*"  />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+
+                                </Grid.RowDefinitions>
+
+                                <!--<TextBlock Grid.Column="0" Text="Nome" Style="{StaticResource SubheaderTextBlockStyle}"/>
+                                <TextBlock Grid.Column="1" Text="Posição" Style="{StaticResource SubheaderTextBlockStyle}"/>
+                                <TextBlock Grid.Column="2" Text="Nr. camisa" Style="{StaticResource SubheaderTextBlockStyle}"/>-->
+                                <TextBlock Grid.Row="1" Text="{x:Bind Nome, Mode=OneWay}"/>
+                                <TextBlock Grid.Row="1" Text="{x:Bind Ficha.Posicao, Mode=OneWay}" Grid.Column="1"/>
+                                <TextBlock Grid.Row="1" Text="{x:Bind Ficha.Camisa, Mode=OneWay}" Grid.Column="2"/>
+                            </Grid>
+                            
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
         </Grid>
