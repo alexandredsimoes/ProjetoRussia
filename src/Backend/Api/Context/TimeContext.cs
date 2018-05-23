@@ -12,11 +12,15 @@ namespace CRUD.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Time>().ToTable("TIME");
+            modelBuilder.Entity<Time>().ToTable("TIME")
+                .HasMany(c => c.Jogadores)
+                .WithOne(c => c.Time);
             modelBuilder.Entity<Jogador>().ToTable("JOGADOR");
             modelBuilder.Entity<Ficha>().ToTable("FICHA");
             modelBuilder.Entity<Jogo>().ToTable("JOGO");
             modelBuilder.Entity<Gol>().ToTable("GOL");
+
+
 
             base.OnModelCreating(modelBuilder);
         }

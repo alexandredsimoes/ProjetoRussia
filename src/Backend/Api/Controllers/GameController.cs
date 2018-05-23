@@ -13,7 +13,7 @@ namespace API.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    [Authorize("Bearer", Roles = "admin")]
+    //[Authorize("Bearer", Roles = "admin")]
     public class GameController : Controller
     {
         private readonly TimeContext _context;

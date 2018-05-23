@@ -10,7 +10,7 @@ namespace CRUD.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    [Authorize("Bearer", Roles = "admin")]
+    //[Authorize("Bearer", Roles = "admin")]
     public class FichaController : Controller
     {
         private readonly TimeContext _context;

@@ -21,7 +21,7 @@
             <StackPanel>
                 <TextBox Header="Nome do time" Text="{x:Bind ViewModel.Time.Pais, Mode=TwoWay}" />
                 <TextBox Header="Nome do técnico" Text="{x:Bind ViewModel.Time.NMTecnico, Mode=TwoWay}" />
-                <Image Margin="0,15,0,0" Width="200" Source="{x:Bind ViewModel.Time.Bandeira, Converter={StaticResource BinaryToImageConverter}, TargetNullValue='ms-appx:///Assets/placeholder-800x423.gif'}">
+                <Image Margin="0,15,0,0" Width="200" Source="{x:Bind ViewModel.Time.Bandeira, Mode=OneWay,Converter={StaticResource BinaryToImageConverter}, TargetNullValue='ms-appx:///Assets/placeholder-800x423.gif'}">
                     <!--<Image.Source>
                         <BitmapImage>
                             <BitmapImage.DecodePixelWidth>

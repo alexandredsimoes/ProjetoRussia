@@ -11,20 +11,32 @@
     <ScrollViewer Name="ForegroundElement" VerticalScrollMode="Enabled" HorizontalAlignment="Stretch" Padding="12,0">
         <StackPanel HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,8,0,0">
-                <FontIcon
+                <!--<FontIcon
                     FontSize="40"
                     Glyph="{x:Bind MasterMenuItem.Symbol, Mode=OneWay}"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Center"/>
-                <TextBlock
-                    Margin="12,0,0,0"
-                    Text="{x:Bind MasterMenuItem.Company, Mode=OneWay}"
-                    Style="{StaticResource SubheaderTextBlockStyle}" />
+                    HorizontalAlignment="Center"/>-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="1" Width="80" Source="{x:Bind MasterMenuItem.Time_1.Bandeira, Mode=OneWay, Converter={StaticResource BinaryToImageConverter}}" Margin="5"/>
+                    <Image Grid.Column="3" Width="80" Source="{x:Bind MasterMenuItem.Time_2.Bandeira, Mode=OneWay, Converter={StaticResource BinaryToImageConverter}}" Margin="5"/>
+                    <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Grid.Column="0" Text="{x:Bind MasterMenuItem.Time_1.Pais, Mode=OneWay}"/>
+                    <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Grid.Column="2" Text="X" Margin="5"/>
+                    <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Grid.Column="4" Text="{x:Bind MasterMenuItem.Time_2.Pais, Mode=OneWay}"/>
+
+                </Grid>
+
             </StackPanel>
             <StackPanel Name="block" Padding="0,15,0,0">
-                <TextBlock Text="Status" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                <TextBlock Text="{x:Bind MasterMenuItem.Status, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />
-                <TextBlock Text="Order date" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,8,0,0"/>
+                <TextBlock Text="Data" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                <TextBlock Text="{x:Bind MasterMenuItem.Data, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />
+                <!--<TextBlock Text="Order date" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,8,0,0"/>
                 <TextBlock Text="{x:Bind MasterMenuItem.OrderDate, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />
                 <TextBlock Text="Company" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,8,0,0"/>
                 <TextBlock Text="{x:Bind MasterMenuItem.Company, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />
@@ -43,7 +55,7 @@
                 <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
 
                 <TextBlock Text="Note 4" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,16,0,0" />
-                <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,24" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,0,0,24" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />-->
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

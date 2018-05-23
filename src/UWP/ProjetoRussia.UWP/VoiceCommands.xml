@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="pt-BR" Name="ProjetoRussiaCommandSet_pt-br">
+    <AppName>Projeto Russia</AppName>
+    <Example> O Brasil joga hoje?</Example>
+
+    <Command Name="timeJogaHoje">
+      <Example> O Brasil joga hoje? </Example>      
+      <ListenFor RequireAppName="ExplicitlySpecified"> {builtin:AppName}, [O][A] {time} joga hoje?  </ListenFor>
+      <Feedback> Vou ver se [o][a] {time} joga hoje... </Feedback>
+      <Navigate/>
+    </Command>
+
+    <PhraseTopic Label="time" Scenario="Search" />
+
+  </CommandSet>
+</VoiceCommands>

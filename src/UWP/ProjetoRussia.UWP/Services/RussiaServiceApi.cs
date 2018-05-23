@@ -31,14 +31,11 @@ namespace ProjetoRussia.UWP.Services
 
         public async Task<IEnumerable<TimeDto>> ListarTimes()
         {
-            var content = await _httpClient.GetAsync(Api.BASE_URL + Api.TIMES_URL);
-            var result = await content.Content.ReadAsStringAsync();
+            var content = await _httpClient.GetStringAsync(Api.BASE_URL + Api.TIMES_URL);
+            //var result = await content.Content.ReadAsStringAsync();
 
-            if(content.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-            {
-                //Manda o FDP pro login
-            }
-            var lista = JsonConvert.DeserializeObject<IEnumerable<TimeDto>>(result);
+            
+            var lista = JsonConvert.DeserializeObject<IEnumerable<TimeDto>>(content);
             return lista;
         }
 

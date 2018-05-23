@@ -6,7 +6,9 @@ using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
 using ProjetoRussia.UWP.Models;
 using ProjetoRussia.UWP.Services;
+using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -37,23 +39,32 @@ namespace ProjetoRussia.UWP.ViewModels
 
         async void ExecuteSelecionarImagemCommand()
         {
-            FileOpenPicker fop = new FileOpenPicker();
-            fop.ViewMode = PickerViewMode.Thumbnail;
-            fop.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            fop.FileTypeFilter.Add(".jpg");
-            fop.FileTypeFilter.Add(".jpeg");
-            fop.FileTypeFilter.Add(".png");
-            var file = await fop.PickSingleFileAsync();
+            var picker = new FileOpenPicker
+            {
+                ViewMode = PickerViewMode.Thumbnail,
+                SuggestedStartLocation = PickerLocationId.PicturesLibrary
+            };
+
+            picker.FileTypeFilter.Add(".jpg");
+
+            StorageFile file = await picker.PickSingleFileAsync();
+
             if (file != null)
             {
-                var stream = await file.OpenStreamForReadAsync();
-                var bytes = new byte[(int)stream.Length];
-                stream.Read(bytes, 0, (int)stream.Length);
-                Time.Bandeira = bytes;
-                RaisePropertyChanged("Time.Bandeira");
-                RaisePropertyChanged("Time");
-                RaisePropertyChanged();
+                var buffer = await FileIO.ReadBufferAsync(file);
 
+                using (DataReader reader = DataReader.FromBuffer(buffer))
+                {
+                    var imageBytes = new byte[buffer.Length];
+
+                    reader.ReadBytes(imageBytes);
+
+                    Time.Bandeira = imageBytes;
+                }
+            }
+            else
+            {
+               // return null;
             }
         }
 

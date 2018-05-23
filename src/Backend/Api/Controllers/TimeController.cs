@@ -11,7 +11,7 @@ namespace CRUD.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    [Authorize("Bearer", Roles = "admin")]
+    //[Authorize("Bearer", Roles = "admin")]
     public class TimeController : Controller
     {
         private readonly TimeContext _context;
@@ -23,30 +23,44 @@ namespace CRUD.Controllers
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<Time>))]
-        public async Task<IActionResult> Get()
-        {           
+        public async Task<List<Time>> Get()
+        {
+            /*
             var times = await _context.Times
+                .Include(c => c.Jogadores)
                 .AsNoTracking()
                 .ToListAsync();
+                */
 
-            return Ok(times);
+            var times = await _context.Times
+                .AsNoTracking()
+                .Select(c => new Time()
+                {
+                    Id =c.Id,
+                    NMTecnico = c.NMTecnico,
+                    Pais =c.Pais,
+                    Bandeira = c.Bandeira,
+                    Jogadores = c.Jogadores.Select(j => new Jogador()
+                    {
+                        Id = j.Id,
+                        Nome = j.Nome,
+                    }).ToList()
+                }).ToListAsync();
+
+            return (times);
         }
 
         [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(Time))]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> Get([FromRoute] int id)
+        public async Task<Time> Get([FromRoute] int id)
         {
             var time = await _context.Times
+                .Include(c => c.Jogadores)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (time == null)
-            {
-                return NotFound();
-            }            
-
-            return Ok(time);
+            return time;
         }
 
         [HttpGet("{id}/players")]
@@ -98,7 +112,7 @@ namespace CRUD.Controllers
                 if (time.Bandeira != null)
                 {
                     _time.Bandeira = time.Bandeira;
-                }                
+                }
                 _time.NMTecnico = time.NMTecnico;
                 _time.Pais = time.Pais;
 

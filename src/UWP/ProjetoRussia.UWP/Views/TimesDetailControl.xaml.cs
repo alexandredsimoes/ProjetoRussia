@@ -12,7 +12,10 @@ namespace ProjetoRussia.UWP.Views
         public TimeDto MasterMenuItem
         {
             get { return GetValue(MasterMenuItemProperty) as TimeDto; }
-            set { SetValue(MasterMenuItemProperty, value); }
+            set
+            {
+                SetValue(MasterMenuItemProperty, value);
+            }
         }
 
         public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(TimeDto), typeof(TimesDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
@@ -24,8 +27,8 @@ namespace ProjetoRussia.UWP.Views
 
         private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var control = d as TimesDetailControl;
-            control.ForegroundElement.ChangeView(0, 0, 1);
+            //var control = d as TimesDetailControl;
+            //control.ForegroundElement.ChangeView(0, 0, 1);
         }
     }
 }

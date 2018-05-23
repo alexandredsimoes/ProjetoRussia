@@ -9,13 +9,13 @@ namespace ProjetoRussia.UWP.Views
 {
     public sealed partial class JogosDetailControl : UserControl
     {
-        public SampleOrder MasterMenuItem
+        public JogoDto MasterMenuItem
         {
-            get { return GetValue(MasterMenuItemProperty) as SampleOrder; }
+            get { return GetValue(MasterMenuItemProperty) as JogoDto; }
             set { SetValue(MasterMenuItemProperty, value); }
         }
 
-        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(SampleOrder), typeof(JogosDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
+        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(JogoDto), typeof(JogosDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
 
         public JogosDetailControl()
         {

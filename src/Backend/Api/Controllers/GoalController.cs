@@ -55,8 +55,8 @@ namespace API.Controllers
                 .WithUrl("http://localhost:65070/GoalNotification/")
                 .Build();
 
-            await connection.StartAsync();
 
+            await connection.StartAsync();
             await connection.SendAsync("SendNewGoal", gol.Time.Pais, gol.Jogador.Nome);
         }
     }

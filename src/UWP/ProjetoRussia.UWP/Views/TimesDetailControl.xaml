@@ -5,35 +5,53 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    mc:Ignorable="d" Height="528" Width="760">
     <ScrollViewer Name="ForegroundElement" VerticalScrollMode="Enabled" HorizontalAlignment="Stretch" Padding="12,0">
-        <StackPanel HorizontalAlignment="Left">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,8,0,0">
-                <Image Source="{x:Bind MasterMenuItem.Bandeira, Converter={StaticResource BinaryToImageConverter}}"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel HorizontalAlignment="Left" Grid.Row="0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,8,0,0">
+                    <Image Source="{x:Bind MasterMenuItem.Bandeira, Mode=OneWay, Converter={StaticResource BinaryToImageConverter}}"
                        VerticalAlignment="Center" Width="200" Height="100" />
-                <!--<FontIcon
+                    <!--<FontIcon
                     FontSize="40"
                     Glyph="{x:Bind MasterMenuItem.Symbol, Mode=OneWay}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"/>-->
-                <TextBlock
+                    <TextBlock
                     Margin="12,0,0,0"
                     Text="{x:Bind MasterMenuItem.Pais, Mode=OneWay}"
                     Style="{StaticResource SubheaderTextBlockStyle}" />
-            </StackPanel>
-            <StackPanel Name="block" Padding="0,15,0,0">
-                <TextBlock Text="Técnico" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                <TextBlock Text="{x:Bind MasterMenuItem.NMTecnico, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />
-                <!--<TextBlock Text="{x:Bind MasterMenuItem.OrderDate, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />
+                    
+                </StackPanel>
+                <StackPanel Name="block" Padding="0,15,0,0">
+                    <TextBlock Text="Técnico" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                    <TextBlock Text="{x:Bind MasterMenuItem.NMTecnico, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />
+
+                    <!--<TextBlock Text="{x:Bind MasterMenuItem.OrderDate, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />
                 <TextBlock Text="Company" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,8,0,0"/>
                 <TextBlock Text="{x:Bind MasterMenuItem.Company, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />
                 <TextBlock Text="Ship to" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,8,0,0"/>
                 <TextBlock Text="{x:Bind MasterMenuItem.ShipTo, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />
                 <TextBlock Text="Order total" Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,8,0,0"/>
                 <TextBlock Text="{x:Bind MasterMenuItem.OrderTotal, Mode=OneWay}" Style="{StaticResource BodyTextBlockStyle}" />-->
+                </StackPanel>
+
+                <TextBlock Text="Jogadores" Style="{StaticResource SubheaderTextBlockStyle}"/>
             </StackPanel>
-        </StackPanel>
+
+            <ListView ItemsSource="{x:Bind MasterMenuItem.Jogadores, Mode=OneWay}" Margin="10"  Grid.Row="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding Nome}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </ScrollViewer>
 </UserControl>
