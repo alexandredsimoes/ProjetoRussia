@@ -57,21 +57,7 @@
                 </StackPanel>
             </StackPanel>
 
-            <TextBlock
-                    x:Uid="Settings_About"
-                    Style="{StaticResource SubtitleTextBlockStyle}"/>
-
-            <StackPanel Margin="{StaticResource EightTopMargin}">
-                <TextBlock
-                    Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" />
-                <TextBlock
-                    x:Uid="Settings_AboutDescription"
-                    Margin="{StaticResource EightTopMargin}" />
-
-                <HyperlinkButton
-                    x:Uid="Settings_PrivacyTermsLink" 
-                    Margin="{StaticResource EightTopMargin}" />
-            </StackPanel>
+          
         </StackPanel>
     </Grid>
 </Page>
