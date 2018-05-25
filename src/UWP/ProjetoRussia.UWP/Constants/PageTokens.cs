@@ -9,5 +9,6 @@
         public const string JogosPage = "Jogos";
         public const string SettingsPage = "Settings";
         public const string TimeCriarPage = "TimeCriar";
+        public const string JogosCriarPage = "JogosCriar";
     }
 }

@@ -68,7 +68,7 @@ namespace ProjetoRussia.UWP.ViewModels
 
         void ExecuteCriarJogoCommand()
         {
-            // _navigationService.Navigate(PageTokens.JogosCriarPage, null);
+            _navigationService.Navigate(PageTokens.JogosCriarPage, null);
         }
     }
 }

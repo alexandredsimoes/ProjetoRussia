@@ -124,6 +124,7 @@
     </Compile>
     <Compile Include="Constants\Api.cs" />
     <Compile Include="Helpers\BinaryToImageConverter.cs" />
+    <Compile Include="Helpers\DateToDateTimeOffsetConverter.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
@@ -148,12 +149,16 @@
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Services\ToastNotificationsService.cs" />
     <Compile Include="Services\ToastNotificationsService.Samples.cs" />
+    <Compile Include="ViewModels\JogosCriarViewModel.cs" />
     <Compile Include="ViewModels\JogosViewModel.cs" />
     <Compile Include="ViewModels\PrincipalViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\TimeCriarViewModel.cs" />
     <Compile Include="ViewModels\TimesViewModel.cs" />
+    <Compile Include="Views\JogosCriarPage.xaml.cs">
+      <DependentUpon>JogosCriarPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\JogosDetailControl.xaml.cs">
       <DependentUpon>JogosDetailControl.xaml</DependentUpon>
     </Compile>
@@ -203,6 +208,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\JogosCriarPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\JogosDetailControl.xaml">
       <Generator>MSBuild:Compile</Generator>

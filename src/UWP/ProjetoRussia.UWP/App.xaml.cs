@@ -62,7 +62,7 @@ namespace ProjetoRussia.UWP
             await Task.CompletedTask;
         }
 
-        protected override Task OnActivateApplicationAsync(IActivatedEventArgs args)
+        protected async override Task OnActivateApplicationAsync(IActivatedEventArgs args)
         {
             if (args.Kind == ActivationKind.ToastNotification && args.PreviousExecutionState != ApplicationExecutionState.Running)
             {
@@ -88,11 +88,13 @@ namespace ProjetoRussia.UWP
                 // commandMode indicates whether the command was entered using speech or text.
                 // Apps should respect text mode by providing silent (text) feedback.
                 string commandMode = this.SemanticInterpretation("commandMode", speechRecognitionResult);
-
+                var api = Container.Resolve<IRussiaServiceApi>();
+                var jogos = await api.ListarJogos();
+                
 
             }
 
-            return Task.CompletedTask;
+            //return Task.CompletedTask;
         }
 
         /// <summary>

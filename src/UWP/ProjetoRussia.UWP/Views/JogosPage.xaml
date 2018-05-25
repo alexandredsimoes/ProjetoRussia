@@ -54,4 +54,10 @@
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             BorderBrush="Transparent" />
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Add" Label="Novo jogo" Command="{x:Bind ViewModel.CriarJogoCommand}" />
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

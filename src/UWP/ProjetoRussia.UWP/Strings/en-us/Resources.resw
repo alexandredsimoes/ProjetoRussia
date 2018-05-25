@@ -201,4 +201,8 @@
     <value>TimeCriar</value>
     <comment>Navigation view item name for TimeCriar</comment>
   </data>
+  <data name="Shell_JogosCriar.Content" xml:space="preserve">
+    <value>JogosCriar</value>
+    <comment>Navigation view item name for JogosCriar</comment>
+  </data>
 </root>

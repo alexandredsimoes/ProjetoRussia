@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="ProjetoRussia.UWP.Views.JogosCriarPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:ProjetoRussia.UWP.Helpers"
+    Style="{StaticResource PageStyle}"
+    xmlns:prismMvvm="using:Prism.Windows.Mvvm"
+    xmlns:models="using:ProjetoRussia.UWP.Models"
+    prismMvvm:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="ComboItemTemplate" x:DataType="models:TimeDto">
+            <StackPanel Orientation="Horizontal">
+                <Image Margin="8,0" Source="{x:Bind Bandeira,Mode=OneWay, Converter={StaticResource BinaryToImageConverter}}" Height="65" Width="65"/>
+                <TextBlock Text="{x:Bind Pais}"/>
+            </StackPanel>
+        </DataTemplate>
+        <converters:DateToDateTimeOffsetConverter x:Key="DateToDateTimeOffsetConverter"/>
+    </Page.Resources>
+    <Grid
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
+                <ComboBox HorizontalAlignment="Stretch" SelectedItem="{x:Bind ViewModel.Jogo.Time_1, Mode=TwoWay}" ItemTemplate="{StaticResource ComboItemTemplate}" ItemsSource="{x:Bind ViewModel.Times, Mode=OneWay}"></ComboBox>
+                <ComboBox HorizontalAlignment="Stretch" SelectedItem="{x:Bind ViewModel.Jogo.Time_2, Mode=TwoWay}" ItemTemplate="{StaticResource ComboItemTemplate}" ItemsSource="{x:Bind ViewModel.Times, Mode=OneWay}"></ComboBox>
+                <DatePicker Date="{x:Bind ViewModel.Jogo.Data, Mode=TwoWay, Converter={StaticResource DateToDateTimeOffsetConverter}}"/>
+                <Button Content="Confirmar" Command="{x:Bind ViewModel.ConfirmarCommand}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
