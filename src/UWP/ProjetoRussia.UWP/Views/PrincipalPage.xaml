@@ -6,8 +6,28 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
+    xmlns:model="using:ProjetoRussia.UWP.Models"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True" 
     mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="ItemTemplate" x:DataType="model:JogoDto">
+            <Grid Height="64" Padding="0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--<FontIcon Grid.Column="0" FontSize="40" Glyph="{x:Bind Symbol}" VerticalAlignment="Center" />-->
+                <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Style="{ThemeResource ListTitleStyle}">
+                        <Run Text="{x:Bind Time_1.Pais}" ></Run>
+                        <Run Text="  X  " ></Run>
+                        <Run Text="{x:Bind Time_2.Pais}" ></Run>
+                    </TextBlock>
+                    <TextBlock Text="{x:Bind Data}" Style="{StaticResource ListSubTitleStyle}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
@@ -15,6 +35,23 @@
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.-->
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="0" />
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" MinHeight="0" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Últimos jogos" Style="{StaticResource SubheaderTextBlockStyle}"/>
+                <ListView ItemsSource="{x:Bind ViewModel.UltimosJogos, Mode=OneWay}" Grid.Row="1" ItemTemplate="{StaticResource ItemTemplate}">
+                    
+                </ListView>
+                <TextBlock Text="Próximos jogos" Style="{StaticResource SubheaderTextBlockStyle}" Grid.Row="2"/>
+                <ListView ItemsSource="{x:Bind ViewModel.ProximosJogos, Mode=OneWay}" Grid.Row="3" ItemTemplate="{StaticResource ItemTemplate}">
+
+                </ListView>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

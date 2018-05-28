@@ -36,9 +36,9 @@ namespace CRUD.Controllers
                 .AsNoTracking()
                 .Select(c => new Time()
                 {
-                    Id =c.Id,
+                    Id = c.Id,
                     NMTecnico = c.NMTecnico,
-                    Pais =c.Pais,
+                    Pais = c.Pais,
                     Bandeira = c.Bandeira,
                     Jogadores = c.Jogadores.Select(j => new Jogador()
                     {
@@ -56,9 +56,19 @@ namespace CRUD.Controllers
         public async Task<Time> Get([FromRoute] int id)
         {
             var time = await _context.Times
-                .Include(c => c.Jogadores)
                 .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .Select(c => new Time()
+                {
+                    Id = c.Id,
+                    NMTecnico = c.NMTecnico,
+                    Pais = c.Pais,
+                    Bandeira = c.Bandeira,
+                    Jogadores = c.Jogadores.Select(j => new Jogador()
+                    {
+                        Id = j.Id,
+                        Nome = j.Nome,
+                    }).ToList()
+                }).FirstOrDefaultAsync();
 
             return time;
         }
@@ -85,8 +95,22 @@ namespace CRUD.Controllers
                 _context.Times.Add(time);
 
                 await _context.SaveChangesAsync();
+                var result = _context.Times
+                .AsNoTracking()
+                .Select(c => new Time()
+                {
+                    Id = c.Id,
+                    NMTecnico = c.NMTecnico,
+                    Pais = c.Pais,
+                    Bandeira = c.Bandeira,
+                    Jogadores = c.Jogadores.Select(j => new Jogador()
+                    {
+                        Id = j.Id,
+                        Nome = j.Nome,
+                    }).ToList()
+                }).Where(c => c.Id == time.Id).FirstOrDefaultAsync();
 
-                return Created($"api/time/{time.Id}", time);
+                return Created($"api/time/{time.Id}", result);
             }
             else
             {

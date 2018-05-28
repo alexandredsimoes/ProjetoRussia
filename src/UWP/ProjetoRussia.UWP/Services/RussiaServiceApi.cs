@@ -41,7 +41,8 @@ namespace ProjetoRussia.UWP.Services
 
         public async Task<bool> CriarTime(TimeDto time)
         {
-            var httpContent = new StringContent(JsonConvert.SerializeObject(time), Encoding.UTF8, "application/json");            
+            var json = JsonConvert.SerializeObject(time);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");            
             var result = await _httpClient.PostAsync(Api.BASE_URL + Api.TIMES_URL, httpContent);
 
             return result.IsSuccessStatusCode;            

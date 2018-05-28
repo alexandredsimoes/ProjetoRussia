@@ -47,6 +47,7 @@ namespace ProjetoRussia.UWP.ViewModels
             };
 
             picker.FileTypeFilter.Add(".jpg");
+            picker.FileTypeFilter.Add(".png");
 
             StorageFile file = await picker.PickSingleFileAsync();
 
