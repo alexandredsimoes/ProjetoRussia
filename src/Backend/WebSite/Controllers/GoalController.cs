@@ -14,7 +14,7 @@ using WebSite.Token;
 
 namespace WebSite.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class GoalController : Controller
     {
         private readonly IConfiguration _config;

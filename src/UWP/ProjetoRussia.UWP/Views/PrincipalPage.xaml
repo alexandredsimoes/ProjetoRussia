@@ -39,9 +39,9 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" MinHeight="0" />
-                    <RowDefinition />
                     <RowDefinition Height="Auto" MinHeight="0" />
-                    <RowDefinition />
+                    <RowDefinition Height="Auto" MinHeight="0" />
+                    <RowDefinition Height="Auto" MinHeight="0" />
                 </Grid.RowDefinitions>
                 <TextBlock Text="Últimos jogos" Style="{StaticResource SubheaderTextBlockStyle}"/>
                 <ListView ItemsSource="{x:Bind ViewModel.UltimosJogos, Mode=OneWay}" Grid.Row="1" ItemTemplate="{StaticResource ItemTemplate}">

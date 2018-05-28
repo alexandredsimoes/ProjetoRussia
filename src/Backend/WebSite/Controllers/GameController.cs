@@ -15,7 +15,7 @@ using WebSite.ViewModel;
 
 namespace WebSite.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class GameController : Controller
     {
         private readonly IConfiguration _config;

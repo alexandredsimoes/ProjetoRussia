@@ -88,8 +88,9 @@ namespace ProjetoRussia.UWP
                 // commandMode indicates whether the command was entered using speech or text.
                 // Apps should respect text mode by providing silent (text) feedback.
                 string commandMode = this.SemanticInterpretation("commandMode", speechRecognitionResult);
-                var api = Container.Resolve<IRussiaServiceApi>();
-                var jogos = await api.ListarJogos();
+                NavigationService.Navigate(PageTokens.JogosPage, "hoje");
+                //var api = Container.Resolve<IRussiaServiceApi>();
+                //var jogos = await api.ListarJogos();
                 
 
             }
