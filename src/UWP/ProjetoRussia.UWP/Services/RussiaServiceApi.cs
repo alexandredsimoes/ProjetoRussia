@@ -35,7 +35,7 @@ namespace ProjetoRussia.UWP.Services
             {
                 var content = await _httpClient.GetStringAsync(Api.BASE_URL + Api.TIMES_URL);
                 //var result = await content.Content.ReadAsStringAsync();
-                if (String.IsNullOrWhiteSpace(content))
+                if (!String.IsNullOrWhiteSpace(content))
                 {
                     var lista = JsonConvert.DeserializeObject<IEnumerable<TimeDto>>(content);
                     return lista;

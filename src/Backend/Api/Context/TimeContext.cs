@@ -20,6 +20,22 @@ namespace CRUD.Context
             modelBuilder.Entity<Jogo>().ToTable("JOGO");
             modelBuilder.Entity<Gol>().ToTable("GOL");
 
+            modelBuilder.Entity<Jogo>()
+                .HasOne(c => c.Time_1)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Jogo>()
+                .HasOne(c => c.Time_2)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Gol>()
+                .HasOne(c => c.Time)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+
 
 
             base.OnModelCreating(modelBuilder);
