@@ -24,7 +24,7 @@ namespace ProjetoRussia.UWP.ViewModels
             if (jogos != null)
             {
                 UltimosJogos = new ObservableCollection<JogoDto>(jogos?.Where(c => c.Data.Date < DateTime.Today.Date).ToList());
-                ProximosJogos = new ObservableCollection<JogoDto>(jogos?.Where(c => c.Data.Date > DateTime.Today.Date).ToList());
+                ProximosJogos = new ObservableCollection<JogoDto>(jogos?.Where(c => c.Data.Date >= DateTime.Today.Date).ToList());
             }
         }
 

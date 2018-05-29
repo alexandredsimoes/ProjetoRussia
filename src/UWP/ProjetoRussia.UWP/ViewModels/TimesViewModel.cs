@@ -52,7 +52,7 @@ namespace ProjetoRussia.UWP.ViewModels
         public async Task LoadDataAsync()
         {
             var data = await _russiaServiceApi.ListarTimes();
-            if(data != null)
+            if(data?.Count() > 0)
             {
                 Times.Clear();
 
