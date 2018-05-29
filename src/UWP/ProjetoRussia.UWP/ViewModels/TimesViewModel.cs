@@ -52,14 +52,18 @@ namespace ProjetoRussia.UWP.ViewModels
         public async Task LoadDataAsync()
         {
             var data = await _russiaServiceApi.ListarTimes();
-            Times.Clear();           
-
-            foreach (var item in data)
+            if(data != null)
             {
-                Times.Add(item);
+                Times.Clear();
+
+                foreach (var item in data)
+                {
+                    Times.Add(item);
+                }
+
+                Selected = Times.First();
             }
 
-            Selected = Times.First();
         }
         public string Teste()
         {

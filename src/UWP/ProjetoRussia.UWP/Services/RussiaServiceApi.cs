@@ -31,12 +31,23 @@ namespace ProjetoRussia.UWP.Services
 
         public async Task<IEnumerable<TimeDto>> ListarTimes()
         {
-            var content = await _httpClient.GetStringAsync(Api.BASE_URL + Api.TIMES_URL);
-            //var result = await content.Content.ReadAsStringAsync();
-
+            try
+            {
+                var content = await _httpClient.GetStringAsync(Api.BASE_URL + Api.TIMES_URL);
+                //var result = await content.Content.ReadAsStringAsync();
+                if (String.IsNullOrWhiteSpace(content))
+                {
+                    var lista = JsonConvert.DeserializeObject<IEnumerable<TimeDto>>(content);
+                    return lista;
+                }
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
             
-            var lista = JsonConvert.DeserializeObject<IEnumerable<TimeDto>>(content);
-            return lista;
+
         }
 
         public async Task<bool> CriarTime(TimeDto time)
@@ -51,14 +62,16 @@ namespace ProjetoRussia.UWP.Services
         public async Task<IEnumerable<JogoDto>> ListarJogos()
         {
             var content = await _httpClient.GetAsync(Api.BASE_URL + Api.JOGOS_URL);
-            var result = await content.Content.ReadAsStringAsync();
+            
 
-            if (content.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            if (content.IsSuccessStatusCode)
             {
-                //Manda o FDP pro login
+                var result = await content.Content.ReadAsStringAsync();
+                var lista = JsonConvert.DeserializeObject<IEnumerable<JogoDto>>(result);
+                return lista;
             }
-            var lista = JsonConvert.DeserializeObject<IEnumerable<JogoDto>>(result);
-            return lista;
+            return null;
+            
         }
 
         public async Task<bool> CriarJogo(JogoDto jogo)

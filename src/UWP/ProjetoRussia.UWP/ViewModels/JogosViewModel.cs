@@ -48,14 +48,19 @@ namespace ProjetoRussia.UWP.ViewModels
         public async Task LoadDataAsync()
         {
             var data = await _russiaServiceApi.ListarJogos();
-            Jogos.Clear();
-
-            foreach (var item in data)
+            if(data != null)
             {
-                Jogos.Add(item);
+                Jogos.Clear();
+
+                foreach (var item in data)
+                {
+                    Jogos.Add(item);
+                }
+
+                Selected = Jogos.FirstOrDefault();
+
             }
 
-            Selected = Jogos.FirstOrDefault();
         }
         public string Teste()
         {

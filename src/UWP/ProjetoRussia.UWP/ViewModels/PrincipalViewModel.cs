@@ -21,8 +21,11 @@ namespace ProjetoRussia.UWP.ViewModels
         public async override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             var jogos = await _russiaServiceApi.ListarJogos();
-            UltimosJogos = new ObservableCollection<JogoDto>(jogos.Where(c => c.Data.Date < DateTime.Today.Date).ToList());
-            ProximosJogos = new ObservableCollection<JogoDto>(jogos.Where(c => c.Data.Date > DateTime.Today.Date).ToList());
+            if (jogos != null)
+            {
+                UltimosJogos = new ObservableCollection<JogoDto>(jogos?.Where(c => c.Data.Date < DateTime.Today.Date).ToList());
+                ProximosJogos = new ObservableCollection<JogoDto>(jogos?.Where(c => c.Data.Date > DateTime.Today.Date).ToList());
+            }
         }
 
         private ObservableCollection<JogoDto> _UltimosJogos;
