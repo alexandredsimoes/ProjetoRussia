@@ -76,6 +76,23 @@ namespace ProjetoRussia.UWP.ViewModels
 
         async void ExecuteSalvarCommand()
         {
+            if (String.IsNullOrWhiteSpace(Time.Pais))
+            {
+                await new MessageDialog("Informe o nome do time").ShowAsync();
+                return;
+            }
+            if (String.IsNullOrWhiteSpace(Time.NMTecnico))
+            {
+                await new MessageDialog("Informe o nome do técnico do time").ShowAsync();
+                return;
+            }
+
+            if (Time.Bandeira == null || Time.Bandeira.Length == 0)
+            {
+                await new MessageDialog("Informe a bandeira do time").ShowAsync();
+                return;
+            }
+
             if (await _russiaServiceApi.CriarTime(Time))
             {
                 if (_navigationService.CanGoBack())
